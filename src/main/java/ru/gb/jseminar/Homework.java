@@ -32,7 +32,7 @@ public class Homework {
         List<Notebook> notebooks = new ArrayList<>();
         notebooks.add(new Notebook("Acer", 8, 512, "Ubuntu", 15, "black", 60000));
         notebooks.add(new Notebook("Asus", 16, 1024, "Windows", 15, "black", 100000));
-        notebooks.add(new Notebook("Lenovo", 16, 1024, "Windows", 15, "black", 950000));
+        notebooks.add(new Notebook("Lenovo", 16, 1024, "Windows", 15, "black", 95000));
         notebooks.add(new Notebook("MSI", 16, 1024, "Windows", 14, "white", 90000));
         notebooks.add(new Notebook("HP", 16, 1024, "Windows", 15, "black", 110000));
         return notebooks;

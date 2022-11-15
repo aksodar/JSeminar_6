@@ -47,6 +47,13 @@ public class Notebook {
         return params;
     }
 
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
 
     public int getRAM() {
         return RAM;
@@ -94,13 +101,5 @@ public class Notebook {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
     }
 }
