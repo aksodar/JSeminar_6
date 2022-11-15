@@ -2,6 +2,7 @@ package ru.gb.jseminar;
 
 import ru.gb.jseminar.data.Notebook;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,17 +18,20 @@ public class Homework {
 
     }
 
-    public Notebook createNotebook(){
-
-        return null;
+    public Notebook createNotebook (String manufacturer, int ram, int ssd, String os, int size, String color, int price) {
+        return new Notebook (manufacturer, ram, ssd, os, size, color, price);
     }
 
-    public List<Notebook> initListNotebooks(){
+    public List<Notebook> initListNotebooks() {
+        List<Notebook> notebooks = new ArrayList<>();
+        notebooks.add(createNotebook("Acer", 8, 512, "Windows 10", 15, "black", 60000));
+        notebooks.add(createNotebook("Asus", 16, 1024, "Windows 11", 15, "black", 100000));
+        notebooks.add(createNotebook("MSI", 16, 1024, "Windows 11", 14, "black", 90000));
 
-        return null;
+        return notebooks;
     }
 
-    public List<Notebook> filter(Map<String, String> params){
+    public List<Notebook> filter(Map<String, String> params, List<Notebook> notebooks) {
 
         return null;
     }
