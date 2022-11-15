@@ -3,8 +3,10 @@ package ru.gb.jseminar;
 import ru.gb.jseminar.data.Notebook;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Homework {
 
@@ -15,25 +17,57 @@ public class Homework {
     //      Пример: 1 - ОЗУ, 2 - Объем ЖД, 3 - Операционная система, 4 - Цвет
     // 4) Отфильтровать ноутбуки их первоначального множества и вывести проходящие по условиям.
     public static void main(String[] args) {
+        Homework homework = new Homework();
 
-    }
+        Map<String, String> filterMap = new HashMap<>();
+        filterMap.put("RAM", "16");
+        filterMap.put("SSD", "1024");
+        filterMap.put("size", "15");
+        filterMap.put("color", "black");
 
-    public Notebook createNotebook (String manufacturer, int ram, int ssd, String os, int size, String color, int price) {
-        return new Notebook (manufacturer, ram, ssd, os, size, color, price);
+        homework.printNotebookList(homework.filter(filterMap, homework.initListNotebooks()));
     }
 
     public List<Notebook> initListNotebooks() {
         List<Notebook> notebooks = new ArrayList<>();
-        notebooks.add(createNotebook("Acer", 8, 512, "Windows 10", 15, "black", 60000));
-        notebooks.add(createNotebook("Asus", 16, 1024, "Windows 11", 15, "black", 100000));
-        notebooks.add(createNotebook("MSI", 16, 1024, "Windows 11", 14, "black", 90000));
-
+        notebooks.add(new Notebook("Acer", 8, 512, "Ubuntu", 15, "black", 60000));
+        notebooks.add(new Notebook("Asus", 16, 1024, "Windows", 15, "black", 100000));
+        notebooks.add(new Notebook("Lenovo", 16, 1024, "Windows", 15, "black", 950000));
+        notebooks.add(new Notebook("MSI", 16, 1024, "Windows", 14, "white", 90000));
+        notebooks.add(new Notebook("HP", 16, 1024, "Windows", 15, "black", 110000));
         return notebooks;
     }
 
-    public List<Notebook> filter(Map<String, String> params, List<Notebook> notebooks) {
+    public List<Notebook> filter (Map<String, String> params, List<Notebook> notebooks) {
+        List<Notebook> notebooksFiltered = new ArrayList<>();
 
-        return null;
+        for (Notebook notebook : notebooks) {
+            Map<String, String> notebookParams = notebook.getAllParams();
+            boolean flag = true;
+
+            for (String param : params.keySet()) {
+                if (notebookParams.containsKey(param)) {
+                    if (!params.get(param).equals(notebookParams.get(param))) {
+                        flag = false;
+                        break;
+                    }
+                } else {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                notebooksFiltered.add(notebook);
+            }
+        }
+
+        return notebooksFiltered;
     }
 
+    public void printNotebookList (List<Notebook> notebooks) {
+        Logger log = Logger.getLogger(Homework.class.getName());
+        for (Notebook notebook : notebooks) {
+            log.info(notebook.toString());
+        }
+    }
 }
