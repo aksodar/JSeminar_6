@@ -7,7 +7,7 @@ public class Notebook {
     private String manufacturer;
     private int RAM;    // RAM size in GB
     private int SSD;    // SSD size in GB
-    private String OS;     // installed OS
+    private String OS;  // installed OS
     private int size;   // in inch
     private String color;
     private int price;  // price in rub
