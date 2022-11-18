@@ -42,20 +42,16 @@ public class Notebook {
     }
 
     public String getRam() {
-        return String.valueOf(ram) + "Gb";
+        return String.valueOf(ram);
     }
 
     public String getMemory() {
-        return String.valueOf(memory) + "Tb";
-    }
-
-    public String getCost() {
-        return String.format("%.2f", cost) + "RUB";
+        return String.valueOf(memory);
     }
 
     @Override
     public String toString() {
-        return "Notebook{" +
+        return "Notebook " + " {" +
                 "model=" + model +
                 ", color=" + color +
                 ", os=" + os +
