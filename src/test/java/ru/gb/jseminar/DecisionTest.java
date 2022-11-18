@@ -1,31 +1,63 @@
 package ru.gb.jseminar;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.gb.jseminar.data.Notebook;
+import ru.gb.jseminar.data.*;
 
 import java.util.*;
 
 class DecisionTest {
+    Decision decision;
+    Map<String, String> request;
+
+    @BeforeEach
+    void serUp() {
+        decision = new Decision();
+        request = new HashMap<>();
+    }
 
     @Test
-    void filter() {
-        CreateListNotebooks listNotebooks = new CreateListNotebooks(
-                new ArrayList<>(Arrays.asList(4, 8, 16, 32)),
-                new ArrayList<>(Arrays.asList(1, 2, 4, 8, 10)),
-                30990.00,
-                116990.00,
-                1250.00,
-                3800.00
-        );
-        List<Notebook> list = listNotebooks.initListNotebooks();
-        Decision decision = new Decision();
-        Map<String, String> request = new HashMap<>();
+    void filterSuccessful() {
+        List<Notebook> list = new ArrayList<>(Arrays.asList(
+                new Notebook(
+                        Model.ACER,
+                        Color.WHITE,
+                        OS.LINUX,
+                        CPU.AMD,
+                        16,
+                        2,
+                        30990.00
+                ),
+                new Notebook(
+                        Model.ASUS,
+                        Color.RED,
+                        OS.WINDOWS,
+                        CPU.INTEL,
+                        16,
+                        4,
+                        60990.00
+                )
+        ));
+
         request.put("color", "white");
         request.put("cpu", "amd");
-        request.put("ram", "4");
+        request.put("ram", "16");
 
-        for(Notebook item: decision.filter(request, list)) {
-            System.out.println(item);
-        }
+        List<Notebook> expected = new ArrayList<>(List.of(
+                new Notebook(
+                        Model.ACER,
+                        Color.WHITE,
+                        OS.LINUX,
+                        CPU.AMD,
+                        16,
+                        2,
+                        30990.00
+                )
+        ));
+
+        List<Notebook> actual = decision.filter(request, list);
+
+        Assertions.assertEquals(expected, actual);
     }
 }

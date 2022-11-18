@@ -1,4 +1,4 @@
-package ru.gb.jseminar;
+package ru.gb.jseminar.repository;
 
 import ru.gb.jseminar.data.*;
 

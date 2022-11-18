@@ -1,5 +1,7 @@
 package ru.gb.jseminar.data;
 
+import java.util.Objects;
+
 public class Notebook {
     private final Model model;
     private final Color color;
@@ -51,7 +53,7 @@ public class Notebook {
 
     @Override
     public String toString() {
-        return "Notebook " + " {" +
+        return "Notebook " + '{' +
                 "model=" + model +
                 ", color=" + color +
                 ", os=" + os +
@@ -60,5 +62,24 @@ public class Notebook {
                 ", memory=" + memory + "Tb" +
                 ", cost=" + String.format("%.2f", cost) + "RUB" +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Notebook notebook = (Notebook) o;
+        return model == notebook.model &&
+                color == notebook.color &&
+                os == notebook.os &&
+                cpu == notebook.cpu &&
+                Objects.equals(ram, notebook.ram) &&
+                Objects.equals(memory, notebook.memory) &&
+                Objects.equals(cost, notebook.cost);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(model, color, os, cpu, ram, memory, cost);
     }
 }

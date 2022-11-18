@@ -2,6 +2,7 @@ package ru.gb.jseminar;
 
 import org.junit.jupiter.api.Test;
 import ru.gb.jseminar.data.Notebook;
+import ru.gb.jseminar.repository.CreateListNotebooks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
