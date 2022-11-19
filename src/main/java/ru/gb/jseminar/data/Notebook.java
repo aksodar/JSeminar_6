@@ -81,8 +81,8 @@ public class Notebook {
     public String toString() {
         
         return String.format(
-            "diagonal:%d\ncpu:%s\nvideoСard:%s\nram:%s\nhdd:%s\noperatingSystem:%s ",
-            diagonal, cpu, videoСard, ram, hdd, operatingSystem);
+            "%d %s %s %s %s %s %f %c",
+            diagonal, cpu, videoСard, ram, hdd, operatingSystem, prise, condition);
     }
 
     public char changeCondition (char condition){
@@ -102,6 +102,27 @@ public class Notebook {
 
     public double пуеPriceIncrease (int increase){
         return prise + prise*(increase/100);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+       if (this == o) return true;
+       if (o == null || getClass() != o.getClass()) return false;
+    
+       Notebook that = (Notebook) o;
+    
+       if ( diagonal != that.diagonal) return false;
+       if ( operatingSystem != that.operatingSystem) return false;
+       if ( condition != that.condition) return false;
+       return true;
+    }
+    
+    @Override
+    public int hashCode() {
+       int result = ram == null ? 0 : ram.hashCode();
+       result = 31 * result + diagonal;
+       
+       return result;
     }
 
 }
