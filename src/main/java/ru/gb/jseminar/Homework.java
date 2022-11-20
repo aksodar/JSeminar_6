@@ -20,13 +20,15 @@ public class Homework {
         List<Notebook>n1=homework.createNotebook();
         List<Notebook>n2=new ArrayList<>();
         Map<String,String>map=new HashMap<>();
-        map.put("color","blue");    //вводим критерии фильтрации
+        map.put("capacityHD","500");
+        map.put("ram","8");                       //вводим критерии фильтрации
+        map.put("os","windows");
         System.out.println(homework.filter(map,n1));
     }
 
     public List<Notebook> createNotebook(){
         List<Notebook>noutbooks= new ArrayList<>();
-        Notebook notebook1= new Notebook("4", "500","windows","black");
+        Notebook notebook1= new Notebook("8", "500","windows","black");
         noutbooks.add(notebook1);
         Notebook notebook2= new Notebook("8", "1000","MacOs","white");
         noutbooks.add(notebook2);
@@ -51,33 +53,77 @@ public class Homework {
 
     public List<Notebook> filter(Map<String, String> params, List<Notebook> notebooks){
         List<Notebook>sort = new ArrayList<>();
+        List<Notebook>sort2 = new ArrayList<>();
+        int count=0;
         if (notebooks.isEmpty()){
             throw new IllegalStateException("Список пуст");
         }else {
             for (String item: params.keySet() ) {
                 String value = params.get(item);
-                for (Notebook item1:notebooks) {
-                    if(item=="ram"){
-                        if(value==item1.getRam()){
-                            sort.add(item1);
+                if (count>=1){
+                    boolean ramBool=false;
+                    boolean colorBool=false;
+                    boolean capacityHDBool=false;
+                    boolean osBool=false;
+                    for (Notebook item2:sort) {
+                        if (item=="ram"){
+                            if (value==item2.getRam()){
+                                ramBool=true;
+                            }
                         }
-                    }
-                    if (item=="color"){
-                        if(value==item1.getColor()){
-                            sort.add(item1);
+                        if (item=="color"){
+                            if (value==item2.getColor()){
+                                colorBool=true;
+                            }
                         }
-                    }
-                    if (item=="capacityHD"){
-                        if(value==item1.getCapacityHD()){
-                            sort.add(item1);
+                        if (item=="capacityHD"){
+                            if (value==item2.getCapacityHD()){
+                                capacityHDBool=true;
+                            }
                         }
+                        if (item=="os"){
+                            if (value==item2.getOs()){
+                                osBool=true;
+                            }
+                        }
+                        if (ramBool||colorBool||capacityHDBool||osBool){
+
+                        }else{
+                            sort2.add(item2);
+                        }
+                        ramBool=false;
+                        colorBool=false;
+                        capacityHDBool=false;
+                        osBool=false;
                     }
-                    if (item=="os"){
-                        if(value==item1.getOs()){
-                            sort.add(item1);
+                }else {
+                    for (Notebook item1:notebooks) {
+                        if(item=="ram"){
+                            if(value==item1.getRam()){
+                                sort.add(item1);
+                            }
+                        }
+                        if (item=="color"){
+                            if(value==item1.getColor()){
+                                sort.add(item1);
+                            }
+                        }
+                        if (item=="capacityHD"){
+                            if(value==item1.getCapacityHD()){
+                                sort.add(item1);
+                            }
+                        }
+                        if (item=="os"){
+                            if(value==item1.getOs()){
+                                sort.add(item1);
+                            }
                         }
                     }
                 }
+                count++;
+            }
+            for (Notebook item:sort2) {
+                sort.remove(item);
             }
         }
         return sort;
