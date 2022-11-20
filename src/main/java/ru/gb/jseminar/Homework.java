@@ -18,7 +18,6 @@ public class Homework {
     public static void main(String[] args) {
         Homework homework=new Homework();
         List<Notebook>n1=homework.createNotebook();
-        List<Notebook>n2=new ArrayList<>();
         Map<String,String>map=new HashMap<>();
         map.put("capacityHD","500");
         map.put("ram","8");                       //вводим критерии фильтрации
