@@ -47,6 +47,10 @@ public class Homework {
                 result.add(notebook);
             }
         }
-        return result;
+        if (!result.isEmpty()){
+            return result;
+        }
+        throw new IllegalStateException("It is not computer equals your parametrs");
+
     }
 }

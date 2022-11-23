@@ -73,12 +73,12 @@ public class Notebook {
 
     @Override
     public String toString() {
-        return "Notebook{" +
+        return "\nNotebook{" +
                 "cost=" + cost +
                 ", model='" + model + '\'' +
                 ", name='" + name + '\'' +
                 ", ram=" + ram +
                 ", os='" + os + '\'' +
-                '}';
+                "}\n";
     }
 }
