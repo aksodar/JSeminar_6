@@ -7,6 +7,7 @@ public class Task2 {
     // б) архивом выставки бульдожков
     // в) информационной системой Театра бульдожек имени Дарахвелидзе
     public static void main(String[] args) {
+       // Task2 tk = new Task2();
 
     }
 }

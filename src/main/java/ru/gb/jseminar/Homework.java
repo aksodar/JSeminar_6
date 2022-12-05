@@ -2,8 +2,12 @@ package ru.gb.jseminar;
 
 import ru.gb.jseminar.data.Notebook;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.logging.Logger;
 
 public class Homework {
 
@@ -14,17 +18,66 @@ public class Homework {
     //      Пример: ОЗУ - Значение, Объем ЖД - Значение, Операционная система - Значение, Цвет - Значение
     // 4) Отфильтровать ноутбуки их первоначального множества и вывести проходящие по условиям.
     public static void main(String[] args) {
+        Homework hw = new Homework();
+        List<Notebook> result = hw.initListNotebooks();
+        Map<String, String> map = new HashMap<>();
+        map.put("model", "HP");
+        map.put("OS", "Linux");
+        Logger lg = Logger.getLogger(Homework.class.getName());
+        for (Notebook notebook: result){
+            lg.info(notebook.toString());
+        }
+        lg.info(hw.filter(map, result).toString());
 
     }
 
     public List<Notebook> initListNotebooks(){
-
-        return null;
+        List<Notebook> notebooks = new ArrayList<>();
+        Notebook n1 = new Notebook("HP", 8, "Linux", "red", 15);
+        Notebook n2 = new Notebook("MSI", 16, "Windows", "black", 17);
+        Notebook n3 = new Notebook("Apple", 16, "macOS", "white", 14); 
+        notebooks.add(n1);
+        notebooks.add(n2);
+        notebooks.add(n3);
+        return notebooks;
     }
 
     public List<Notebook> filter(Map<String, String> params, List<Notebook> notebooks){
-
-        return null;
+        List<Notebook> resultFilter = new ArrayList<>();
+        for (Notebook notebook: notebooks){
+            int count = 0;
+            for (String key: params.keySet()){
+                if(Objects.equals(key, "model1")){
+                    if(params.get(key).equalsIgnoreCase(notebook.getModel())){
+                        count++;
+                    }
+                }
+                if(Objects.equals(key, "ram")){
+                    if(params.get(key).equalsIgnoreCase(String.valueOf(notebook.getRam()))){
+                        count++;
+                    }
+                }
+                if(Objects.equals(key, "OS")){
+                    if(params.get(key).equalsIgnoreCase(notebook.getOs())){
+                        count++;
+                    }
+                }
+                if(Objects.equals(key, "color")){
+                    if(params.get(key).equalsIgnoreCase(notebook.getColor())){
+                        count++;
+                    }
+                }
+                if(Objects.equals(key, "diagonal")){
+                    if(params.get(key).equalsIgnoreCase(String.valueOf(notebook.getDiagonal()))){
+                        count++;
+                    }
+                }
+                if(count == params.size()){
+                    resultFilter.add(notebook);
+                }
+            }
+        }
+        return resultFilter;
     }
 
 }
