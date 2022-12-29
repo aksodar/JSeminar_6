@@ -99,7 +99,7 @@ public class Notebook {
         Notebook notebook = (Notebook) o;
         return getBrand().equals(notebook.getBrand()) && getModel().equals(notebook.getModel()) &&
                 getHardDrive().equals(notebook.getHardDrive()) && getRam().equals(notebook.getRam())
-                && getColor().equals(notebook.getColor()) && getOs().equals(notebook.getOs());
+                && getColor().equals(notebook.getColor()) &&  getOs().equals(notebook.getOs());
     }
 
 //    @Override
