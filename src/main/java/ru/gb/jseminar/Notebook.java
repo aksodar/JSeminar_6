@@ -86,13 +86,11 @@ public class Notebook {
         return spec;
     }
 
-//    @Override
     public String toString() {
         return String.format("brand: %s; model: %s; hard drive: %d; RAM: %d; colour: %s, OS: %s",
                 brand, model, hardDrive, ram, color, os);
     }
-//
-//    @Override
+
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Notebook)) return false;
@@ -102,7 +100,7 @@ public class Notebook {
                 && getColor().equals(notebook.getColor()) && getOs().equals(notebook.getOs());
     }
 
-//    @Override
+
     public int hashCode() {
         return Objects.hash(getBrand(), getModel(), getHardDrive(), getRam(), getColor(), getOs());
     }
