@@ -15,7 +15,7 @@ public class Homework {
     //      Пример: ОЗУ - Значение, Объем ЖД - Значение, Операционная система - Значение, Цвет - Значение
     // 4) Отфильтровать ноутбуки их первоначального множества и вывести проходящие по условиям.
     public static void main(String[] args) {
-        Homework hw = new Homework();
+                Homework hw = new Homework();
         Notebook n1 = new Notebook("Honor", "MagicBook", (float)16.1, "Ryzen 5", 16, "не установлена", 60000);
         Notebook n2 = new Notebook("Apple", "MLXW3", (float)13.6, "Apple M2 M2", 16, "macOS", 155000);
         Notebook n3 = new Notebook("ASUS", "TUF Gaming A15", (float)15.6, "Core i5", 8, "Windows 11 Домашняя 64", 73000);
@@ -30,6 +30,7 @@ public class Homework {
         choice.put("ram", "16");
         List<Notebook> filter = hw.filter(choice, list);
         System.out.println(filter.toString());
+
     }
 
     public List<Notebook> initListNotebooks(Notebook ... nb){

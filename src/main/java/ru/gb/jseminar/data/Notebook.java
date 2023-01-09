@@ -20,7 +20,6 @@ public class Notebook {
         this.os = os;
         this.price = pr;
     }
-
     public String getBrand() {
         return brand;
     }
