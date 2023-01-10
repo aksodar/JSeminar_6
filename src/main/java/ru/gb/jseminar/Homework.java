@@ -9,36 +9,28 @@ public class Homework {
         Homework nb = new Homework();
         Set laptops = nb.getFullSetOfLaptops();
         Set foundLaptops = nb.displayMenu(laptops);
-        System.out.println("------------------------------------");
-        System.out.println();
-        Set foundLaptops1 = new LinkedHashSet();
-        Set foundLaptops2 = new LinkedHashSet();
-        Set foundLaptops3 = new LinkedHashSet();;
-        Set foundLaptops4 = new LinkedHashSet();;
-        if (!(foundLaptops.isEmpty())) {
+        if (foundLaptops.size() == 1) {
             nb.printResult(foundLaptops);
-            if (foundLaptops.size() > 1) {
-                foundLaptops1 = nb.additionalDisplayMenu(foundLaptops);
-                nb.printResult(foundLaptops1);
-                if (foundLaptops1.size() > 1) {
-                    foundLaptops2 = nb.additionalDisplayMenu(foundLaptops1);
-                    nb.printResult(foundLaptops2);
-                    if (foundLaptops2.size() > 1) {
-                        foundLaptops3 = nb.additionalDisplayMenu(foundLaptops2);
-                        nb.printResult(foundLaptops3);
-                        if (foundLaptops3.size() > 1) {
-                            foundLaptops4 = nb.additionalDisplayMenu(foundLaptops3);
-                            nb.printResult(foundLaptops4);
-                        }
-                    }
+            System.out.println("-----------------------\n"+ANSIConstants.ANSI_GREEN + "Done" + ANSIConstants.ANSI_RESET);
+            System.exit(0);
+        }
+        if (foundLaptops.isEmpty()) {
+            System.out.println(ANSIConstants.ANSI_RED + "Laptops for desired parameters not found or incorrect choice! Please try again! " + ANSIConstants.ANSI_RESET);
+        }
+        else {
+            nb.printResult(foundLaptops);
+            while (!foundLaptops.isEmpty() || foundLaptops.size() > 1 ) {
+                foundLaptops = nb.deepSearch (foundLaptops);
+                if (foundLaptops.isEmpty()) {
+                    System.out.println(ANSIConstants.ANSI_RED + "Laptops for desired parameters not found or incorrect choice! Please try again! " + ANSIConstants.ANSI_RESET);
+                    System.exit(0);
+                }
+                nb.printResult(foundLaptops);
+                if (foundLaptops.size() == 1) {
+                    System.out.println("-----------------------\n"+ANSIConstants.ANSI_GREEN + "Done" + ANSIConstants.ANSI_RESET);
+                    System.exit(0);
                 }
             }
-        }
-        if (foundLaptops1.size() == 1 || foundLaptops2.size() == 1 || foundLaptops3.size() == 1 || foundLaptops4.size() == 1) {
-            System.out.println(ANSIConstants.ANSI_GREEN + "Done" + ANSIConstants.ANSI_RESET);
-        }
-        if (foundLaptops1.isEmpty()) {
-            System.out.println(ANSIConstants.ANSI_RED + "Laptops for desired parameters not found or incorrect choice! Please try again! " + ANSIConstants.ANSI_RESET);
         }
     }
     public Set getFullSetOfLaptops() {
@@ -66,6 +58,7 @@ public class Homework {
         System.out.println("4.Color");
         System.out.println("5.Price");
         System.out.println("6.See full list of laptops available");
+        System.out.println("7.Exit");
         System.out.println("-------------------------------------");
         System.out.print("Provide your choice here: ");
         int choice = in.nextInt();
@@ -126,6 +119,9 @@ public class Homework {
             case 6:
                 findSet = getFullSetOfLaptops();
                 break;
+            case 7:
+                System.out.println(ANSIConstants.ANSI_GREEN+"Search process finished"+ANSIConstants.ANSI_RESET);
+                System.exit(0);
         }
         return findSet;
     }
@@ -145,9 +141,18 @@ public class Homework {
                 findSet1 = displayMenu(notebooks);
                 break;
             case 2:
+                System.out.println(ANSIConstants.ANSI_GREEN+"Search process finished"+ANSIConstants.ANSI_RESET);
                 System.exit(0);
         }
     return findSet1;
+    }
+
+    public Set deepSearch (Set<Notebook> notebooks) {
+        Set newSet = new LinkedHashSet();
+        if (notebooks.size() > 1) {
+            newSet = additionalDisplayMenu(notebooks);
+        }
+        return newSet;
     }
 
     public void printResult(Set<Notebook> notebooks) {
