@@ -11,6 +11,15 @@ public class Notebook {
     Integer ram; // объём ОЗУ
     Integer diskCapacity; // объём винтчестера
     String os; // операционная система
+
+    public Notebook(){
+        this.id = null;
+        this.name = null;
+        this.color = null;
+        this.ram = null;
+        this.diskCapacity = null;
+        this.os = null;
+    }
     
     public Notebook(String id, String name, String color, Integer ram, Integer diskCapasity, String os){
         this.id = id;
